@@ -18,45 +18,45 @@ use Wsdl2PhpGenerator\GeneratorInterface;
 class MockGenerator implements GeneratorInterface
 {
 
-    static $instance;
+  static $instance;
 
-    protected $config;
+  protected $config;
 
-    /**
-     * Initializes the single instance if it hasn't been, and returns it if it has.
-     *
-     * @return GeneratorInterface
-     */
-    public static function instance()
-    {
-        if (!isset(self::$instance)) {
-            self::$instance = new MockGenerator();
-        }
-        return self::$instance;
+  /**
+   * Initializes the single instance if it hasn't been, and returns it if it has.
+   *
+   * @return GeneratorInterface
+   */
+  public static function instance()
+  {
+    if (!isset(self::$instance)) {
+      self::$instance = new MockGenerator();
     }
+    return self::$instance;
+  }
 
-    /**
-     * Returns the loaded config.
-     *
-     * @return ConfigInterface The loaded config.
-     */
-    public function getConfig()
-    {
-        return $this->config;
-    }
+  /**
+   * Returns the loaded config.
+   *
+   * @return ConfigInterface The loaded config.
+   */
+  public function getConfig()
+  {
+    return $this->config;
+  }
 
-    /**
-     * Generates php source code from a wsdl file.
-     *
-     * @param ConfigInterface $config The config to use for generation.
-     */
-    public function generate(ConfigInterface $config)
-    {
-        $this->config = $config;
-    }
+  /**
+   * Generates php source code from a wsdl file.
+   *
+   * @param ConfigInterface $config The config to use for generation.
+   */
+  public function generate(ConfigInterface $config)
+  {
+    $this->config = $config;
+  }
 
-    public function setLogger(LoggerInterface $logger)
-    {
-        // TODO: Implement setLogger() method.
-    }
+  public function setLogger(LoggerInterface $logger)
+  {
+    // TODO: Implement setLogger() method.
+  }
 }
