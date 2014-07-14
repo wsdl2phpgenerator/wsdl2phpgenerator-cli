@@ -7,7 +7,7 @@
     "prefer-stable": true,
     "autoload": {
         "psr-0": {
-            "Wsdl2PhpGenerator\\": ["src/"]
+            "Wsdl2PhpGenerator\\": ["src/", "tests/"]
         }
     },
     "bin": ["wsdl2php"],
