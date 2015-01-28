@@ -68,22 +68,6 @@ class GenerateCommand extends Command
                 'classNames'
             )
             ->addConfigOption(
-                'classExists',
-                'e',
-                InputOption::VALUE_NONE,
-                'If all classes should be guarded with if(!class_exists) statements',
-                null,
-                'classExists'
-            )
-            ->addConfigOption(
-                'createAccessors',
-                null,
-                InputOption::VALUE_NONE,
-                'Create getter and setter methods for member variables',
-                null,
-                'createAccessors'
-            )
-            ->addConfigOption(
                 'constructorNull',
                 null,
                 InputOption::VALUE_NONE,
@@ -108,28 +92,12 @@ class GenerateCommand extends Command
                 'namespaceName'
             )
             ->addConfigOption(
-                'noIncludes',
-                null,
-                InputOption::VALUE_NONE,
-                'Do not add include_once statements for loading individual files',
-                null,
-                'noIncludes'
-            )
-            ->addConfigOption(
                 'noTypeConstructor',
                 't',
                 InputOption::VALUE_NONE,
                 'If no type constructor should be generated',
                 null,
                 'noTypeConstructor'
-            )
-            ->addConfigOption(
-                'prefix',
-                'p',
-                InputOption::VALUE_REQUIRED,
-                'The prefix to use for the generated classes',
-                null,
-                'prefix'
             )
             ->addConfigOption(
                 'sharedTypes',
@@ -139,23 +107,6 @@ class GenerateCommand extends Command
                 null,
                 'sharedTypes'
             )
-            ->addConfigOption(
-                'singleFile',
-                's',
-                InputOption::VALUE_NONE,
-                'If the output should be a single file',
-                null,
-                'oneFile'
-            )
-            ->addConfigOption(
-                'suffix',
-                'q',
-                InputOption::VALUE_REQUIRED,
-                'The suffix to use for the generated classes',
-                null,
-                'suffix'
-            )
-
             ->addCacheOption(
                 'cacheNone',
                 null,
@@ -333,6 +284,8 @@ class GenerateCommand extends Command
             'inputFile' => null,
             'outputDir' => null
         ));
+
+
 
         // Map arguments to configuration
         foreach ($this->inputConfigMapping as $mapping) {
