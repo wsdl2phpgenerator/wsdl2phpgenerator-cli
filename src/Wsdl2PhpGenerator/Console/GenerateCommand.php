@@ -339,20 +339,6 @@ class GenerateCommand extends Command
             $mapping($input, $config);
         }
 
-        // Some arguments interact. Prompt the user to determine how to react.
-        if ($config->get('oneFile') && $config->get('classNames')) {
-            // Print different messages based on if more than one class is requested for generation
-            if (sizeof($config->get('classNames')) > 1) {
-                $message = sprintf('You have selected to only generate some of the classes in the wsdl (%s) and to save them in one file. Continue?', $config->get('classNames'));
-            } else {
-                $message = 'You have selected to only generate one class and save it to a single file. If you have selected the service class and outputs this file to a directory where you previosly have generated the classes the file will be overwritten. Continue?';
-            }
-            $continue = $this->getHelper('dialog')->askConfirmation($output, '<question>' . $message . '</question>');
-            if (!$continue) {
-                return;
-            }
-        }
-
         // Only set the logger if the generator instance supports this.
         // setLogger() has not been added to GeneratorInterface for backwards compatibility reasons.
         // FIXME: v3

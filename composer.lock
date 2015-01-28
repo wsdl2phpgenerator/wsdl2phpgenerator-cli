@@ -157,16 +157,16 @@
         },
         {
             "name": "wsdl2phpgenerator/wsdl2phpgenerator",
-            "version": "3.x-dev",
+            "version": "3.1.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/wsdl2phpgenerator/wsdl2phpgenerator.git",
-                "reference": "b49c37a9efec9b03bc137c6b56f545c9088dce2c"
+                "reference": "6cb408acbc6dab52a8bb977d289d941dfba69ab2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/wsdl2phpgenerator/wsdl2phpgenerator/zipball/b49c37a9efec9b03bc137c6b56f545c9088dce2c",
-                "reference": "b49c37a9efec9b03bc137c6b56f545c9088dce2c",
+                "url": "https://api.github.com/repos/wsdl2phpgenerator/wsdl2phpgenerator/zipball/6cb408acbc6dab52a8bb977d289d941dfba69ab2",
+                "reference": "6cb408acbc6dab52a8bb977d289d941dfba69ab2",
                 "shasum": ""
             },
             "require": {
@@ -176,17 +176,14 @@
             },
             "require-dev": {
                 "kasperg/phing-github": "0.2.*",
-                "kherge/box": "2.4.*",
-                "phing/phing": "2.7.*",
+                "phing/phing": "~2.7",
                 "php-vcr/phpunit-testlistener-vcr": "1.1.*",
-                "phpunit/phpunit": "4.0.*"
+                "phpunit/phpunit": "~4.4",
+                "psr/log": "~1.0"
             },
-            "bin": [
-                "wsdl2php"
-            ],
             "type": "library",
             "autoload": {
-                "psr-0": {
+                "psr-4": {
                     "Wsdl2PhpGenerator\\": [
                         "src/",
                         "lib/"
@@ -202,7 +199,7 @@
                 "soap",
                 "wsdl"
             ],
-            "time": "2014-07-14 20:36:16"
+            "time": "2015-01-15 08:59:35"
         }
     ],
     "packages-dev": [
@@ -2086,18 +2083,14 @@
             "time": "2014-07-08 12:21:33"
         }
     ],
-    "aliases": [
-
-    ],
+    "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [
-
-    ],
+    "stability-flags": [],
+    "prefer-stable": true,
+    "prefer-lowest": false,
     "platform": {
         "php": ">=5.3.0",
         "ext-soap": "*"
     },
-    "platform-dev": [
-
-    ]
+    "platform-dev": []
 }
