@@ -6,7 +6,6 @@ use Wsdl2PhpGenerator\Console\Application;
 use Wsdl2PhpGenerator\Console\GenerateCommand;
 use Wsdl2PhpGenerator\Generator;
 
-
 foreach (array(__DIR__ . '/../../autoload.php', __DIR__ . '/vendor/autoload.php') as $file) {
     if (file_exists($file)) {
         define('WSDL2PHP_COMPOSER_INSTALL', $file);

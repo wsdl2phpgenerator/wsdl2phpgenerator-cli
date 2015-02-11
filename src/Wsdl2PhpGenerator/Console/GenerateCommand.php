@@ -138,31 +138,6 @@ class GenerateCommand extends Command
                 'Adds the option to cache the wsdl in memory and on disk to the client',
                 null,
                 'WSDL_CACHE_BOTH'
-            )
-
-            ->addFeatureOption(
-                'singleElementArrays',
-                null,
-                InputOption::VALUE_NONE,
-                'Adds the option to use single element arrays to the client',
-                null,
-                'SOAP_SINGLE_ELEMENT_ARRAYS'
-            )
-            ->addFeatureOption(
-                'waitOneWayCalls',
-                null,
-                InputOption::VALUE_NONE,
-                'Adds the option to use wait one way calls to the client',
-                null,
-                'SOAP_WAIT_ONE_WAY_CALLS'
-            )
-            ->addFeatureOption(
-                'xsiArrayType',
-                null,
-                InputOption::VALUE_NONE,
-                'Adds the option to use xsi arrays to the client',
-                null,
-                'SOAP_USE_XSI_ARRAY_TYPE'
             );
     }
 
@@ -243,33 +218,6 @@ class GenerateCommand extends Command
             }
         };
         return $this->addConfigOption($name, $shortcut, $mode, $description, $default, $cacheMapping);
-    }
-
-    /**
-     * @param string $name
-     * @param string $shortcut
-     * @param integer $mode
-     * @param string $description
-     * @param mixed $default
-     * @param string $feature
-     * @return GenerateCommand
-     */
-    protected function addFeatureOption(
-        $name,
-        $shortcut = null,
-        $mode = null,
-        $description = '',
-        $default = null,
-        $feature = null
-    ) {
-        $featureMapping = function (Input $input, Config &$config) use ($name, $feature) {
-            if ($input->getOption($name)) {
-                $options = $config->get('optionsFeatures');
-                $options[] = $feature;
-                $config->set('optionsFeatures', array_unique($options));
-            }
-        };
-        return $this->addConfigOption($name, $shortcut, $mode, $description, $default, $featureMapping);
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
