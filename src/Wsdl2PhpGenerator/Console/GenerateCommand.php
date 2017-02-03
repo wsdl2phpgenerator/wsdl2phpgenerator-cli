@@ -233,19 +233,12 @@ class GenerateCommand extends Command
             'outputDir' => null
         ));
 
-
-
         // Map arguments to configuration
         foreach ($this->inputConfigMapping as $mapping) {
             $mapping($input, $config);
         }
 
-        // Only set the logger if the generator instance supports this.
-        // setLogger() has not been added to GeneratorInterface for backwards compatibility reasons.
-        // FIXME: v3
-        if (method_exists($this->generator, 'setLogger')) {
-            $this->generator->setLogger(new OutputLogger($output));
-        }
+        $this->generator->setLogger(new OutputLogger($output));
 
         // Go generate!
         $this->generator->generate($config);

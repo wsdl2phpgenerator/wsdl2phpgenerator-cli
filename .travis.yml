@@ -3,6 +3,9 @@ php:
   - 5.3
   - 5.4
   - 5.5
+  - 5.7
+  - 7.0
+  - 7.1
 
 env:
   - SYMFONY_VERSION="~2.3"
@@ -11,9 +14,9 @@ env:
   - SYMFONY_VERSION="2.3.*"
 
 before_install:
-  # Ensure that we always run with the latest version of composer. 
+  # Ensure that we always run with the latest version of composer.
   # The default one supplied by Travis can get stale resulting in failed builds.
-  - composer self-update
+  - composer selfupdate
 
 before_script:
   # Use --prefer-source to download dependencies via git and avoid GitHub API
