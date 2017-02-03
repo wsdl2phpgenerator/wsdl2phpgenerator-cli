@@ -10,6 +10,11 @@ env:
   # actually support the versions we specify in our requirements.
   - SYMFONY_VERSION="2.3.*"
 
+before_install:
+  # Ensure that we always run with the latest version of composer. 
+  # The default one supplied by Travis can get stale resulting in failed builds.
+  - composer self-update
+
 before_script:
   # Use --prefer-source to download dependencies via git and avoid GitHub API
   # rate limits resulting in 502 HTTP responses, build errors and

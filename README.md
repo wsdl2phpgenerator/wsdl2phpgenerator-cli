@@ -24,8 +24,12 @@ There is a mailing list for the project at [https://groups.google.com/forum/#!fo
 
 ## Usage
 
-1. Download [wsdl2phpgenerator-2.4.0.phar](https://github.com/wsdl2phpgenerator/wsdl2phpgenerator/releases/download/2.4.0/wsdl2phpgenerator-2.4.0.phar) from [the latest release](https://github.com/wsdl2phpgenerator/wsdl2phpgenerator/releases/latest)
-1. Run `php wsdl2phpgenerator-2.4.0.phar -i input.wsdl -o tmp/my/directory/wsdl`
+Getting a cli version of wsdl2phpgenerator 3 is a work in progress.
+
+To use the last version of wsdl2phpgenerator 2 follow these steps:
+
+1. Download [wsdl2phpgenerator-2.5.5.phar](https://github.com/wsdl2phpgenerator/wsdl2phpgenerator/releases/download/2.5.5/wsdl2phpgenerator-2.5.5.phar)
+1. Run `php wsdl2phpgenerator-2.5.5.phar -i input.wsdl -o tmp/my/directory/wsdl`
 
 The directory is created if possible.
 
