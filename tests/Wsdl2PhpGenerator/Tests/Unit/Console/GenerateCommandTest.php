@@ -59,6 +59,9 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
         $this->assertConfig(array('--output', '-o'), true, 'outputDir');
         $this->assertConfig(array('--classes', '-c'), 'someClass', 'classNames');
         $this->assertConfig('--constructorNull', true, 'constructorParamsDefaultToNull');
+        $this->assertConfig('--soapClientClass', true, function (ConfigInterface $config) {
+            return $config->get('soapClientClass') == 'Test\\SoapClient';
+        });
         $this->assertConfig('--gzip', true, 'compression');
         $this->assertConfig(array('--namespace', '-n'), 'SomeNamespace', 'namespaceName');
         $this->assertConfig(array('--noTypeConstructor', '-t'), true, 'noTypeConstructor');

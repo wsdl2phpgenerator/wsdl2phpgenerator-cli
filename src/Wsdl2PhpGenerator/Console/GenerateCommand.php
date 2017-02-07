@@ -107,6 +107,14 @@ class GenerateCommand extends Command
                 null,
                 'sharedTypes'
             )
+            ->addConfigOption(
+                'soapClientClass',
+                null,
+                InputOption::VALUE_OPTIONAL,
+                'The base class to use for generated services. This should be a subclass of the PHP SoapClient',
+                null,
+                'soapClientClass'
+            )
             ->addCacheOption(
                 'cacheNone',
                 null,
