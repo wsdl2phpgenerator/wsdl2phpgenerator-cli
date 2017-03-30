@@ -68,22 +68,6 @@ class GenerateCommand extends Command
                 'classNames'
             )
             ->addConfigOption(
-                'classExists',
-                'e',
-                InputOption::VALUE_NONE,
-                'If all classes should be guarded with if(!class_exists) statements',
-                null,
-                'classExists'
-            )
-            ->addConfigOption(
-                'createAccessors',
-                null,
-                InputOption::VALUE_NONE,
-                'Create getter and setter methods for member variables',
-                null,
-                'createAccessors'
-            )
-            ->addConfigOption(
                 'constructorNull',
                 null,
                 InputOption::VALUE_NONE,
@@ -108,28 +92,12 @@ class GenerateCommand extends Command
                 'namespaceName'
             )
             ->addConfigOption(
-                'noIncludes',
-                null,
-                InputOption::VALUE_NONE,
-                'Do not add include_once statements for loading individual files',
-                null,
-                'noIncludes'
-            )
-            ->addConfigOption(
                 'noTypeConstructor',
                 't',
                 InputOption::VALUE_NONE,
                 'If no type constructor should be generated',
                 null,
                 'noTypeConstructor'
-            )
-            ->addConfigOption(
-                'prefix',
-                'p',
-                InputOption::VALUE_REQUIRED,
-                'The prefix to use for the generated classes',
-                null,
-                'prefix'
             )
             ->addConfigOption(
                 'sharedTypes',
@@ -140,22 +108,13 @@ class GenerateCommand extends Command
                 'sharedTypes'
             )
             ->addConfigOption(
-                'singleFile',
-                's',
-                InputOption::VALUE_NONE,
-                'If the output should be a single file',
+                'soapClientClass',
                 null,
-                'oneFile'
-            )
-            ->addConfigOption(
-                'suffix',
-                'q',
-                InputOption::VALUE_REQUIRED,
-                'The suffix to use for the generated classes',
+                InputOption::VALUE_OPTIONAL,
+                'The base class to use for generated services. This should be a subclass of the PHP SoapClient',
                 null,
-                'suffix'
+                'soapClientClass'
             )
-
             ->addCacheOption(
                 'cacheNone',
                 null,
@@ -187,31 +146,6 @@ class GenerateCommand extends Command
                 'Adds the option to cache the wsdl in memory and on disk to the client',
                 null,
                 'WSDL_CACHE_BOTH'
-            )
-
-            ->addFeatureOption(
-                'singleElementArrays',
-                null,
-                InputOption::VALUE_NONE,
-                'Adds the option to use single element arrays to the client',
-                null,
-                'SOAP_SINGLE_ELEMENT_ARRAYS'
-            )
-            ->addFeatureOption(
-                'waitOneWayCalls',
-                null,
-                InputOption::VALUE_NONE,
-                'Adds the option to use wait one way calls to the client',
-                null,
-                'SOAP_WAIT_ONE_WAY_CALLS'
-            )
-            ->addFeatureOption(
-                'xsiArrayType',
-                null,
-                InputOption::VALUE_NONE,
-                'Adds the option to use xsi arrays to the client',
-                null,
-                'SOAP_USE_XSI_ARRAY_TYPE'
             );
     }
 
@@ -294,33 +228,6 @@ class GenerateCommand extends Command
         return $this->addConfigOption($name, $shortcut, $mode, $description, $default, $cacheMapping);
     }
 
-    /**
-     * @param string $name
-     * @param string $shortcut
-     * @param integer $mode
-     * @param string $description
-     * @param mixed $default
-     * @param string $feature
-     * @return GenerateCommand
-     */
-    protected function addFeatureOption(
-        $name,
-        $shortcut = null,
-        $mode = null,
-        $description = '',
-        $default = null,
-        $feature = null
-    ) {
-        $featureMapping = function (Input $input, Config &$config) use ($name, $feature) {
-            if ($input->getOption($name)) {
-                $options = $config->get('optionsFeatures');
-                $options[] = $feature;
-                $config->set('optionsFeatures', array_unique($options));
-            }
-        };
-        return $this->addConfigOption($name, $shortcut, $mode, $description, $default, $featureMapping);
-    }
-
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Input and output options are in fact required so bail if they are not set.
@@ -339,26 +246,7 @@ class GenerateCommand extends Command
             $mapping($input, $config);
         }
 
-        // Some arguments interact. Prompt the user to determine how to react.
-        if ($config->get('oneFile') && $config->get('classNames')) {
-            // Print different messages based on if more than one class is requested for generation
-            if (sizeof($config->get('classNames')) > 1) {
-                $message = sprintf('You have selected to only generate some of the classes in the wsdl (%s) and to save them in one file. Continue?', $config->get('classNames'));
-            } else {
-                $message = 'You have selected to only generate one class and save it to a single file. If you have selected the service class and outputs this file to a directory where you previosly have generated the classes the file will be overwritten. Continue?';
-            }
-            $continue = $this->getHelper('dialog')->askConfirmation($output, '<question>' . $message . '</question>');
-            if (!$continue) {
-                return;
-            }
-        }
-
-        // Only set the logger if the generator instance supports this.
-        // setLogger() has not been added to GeneratorInterface for backwards compatibility reasons.
-        // FIXME: v3
-        if (method_exists($this->generator, 'setLogger')) {
-            $this->generator->setLogger(new OutputLogger($output));
-        }
+        $this->generator->setLogger(new OutputLogger($output));
 
         // Go generate!
         $this->generator->generate($config);
