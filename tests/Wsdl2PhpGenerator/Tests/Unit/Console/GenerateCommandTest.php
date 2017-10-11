@@ -22,7 +22,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testBaseArguments()
     {
-        $input = $this->generateInput();
+        $input  = $this->generateInput();
         $config = $this->getConfigFromInput($input);
         $this->assertEquals($input['--input'], $config->get('inputFile'));
         $this->assertEquals($input['--output'], $config->get('outputDir'));
@@ -45,7 +45,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
      */
     public function testCache()
     {
-        $input = $this->generateInput(array('--cacheBoth' => true));
+        $input  = $this->generateInput(array('--cacheBoth' => true));
         $config = $this->getConfigFromInput($input);
         $this->assertEquals('WSDL_CACHE_BOTH', $config->get('wsdlCache'));
     }
@@ -63,21 +63,21 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
             return $config->get('soapClientClass') == 'Test\\SoapClient';
         });
         $this->assertConfig('--gzip', true, 'compression');
-        $this->assertConfig(array('--namespace', '-n'), 'SomeNamespace', 'namespaceName');
+        $this->assertConfig(array('--namespace', '-ns'), 'SomeNamespace', 'namespaceName');
         $this->assertConfig(array('--noTypeConstructor', '-t'), true, 'noTypeConstructor');
         $this->assertConfig('--sharedTypes', true, 'sharedTypes');
 
         $this->assertConfig('--cacheNone', true, function (ConfigInterface $config) {
-                return $config->get('wsdlCache') == 'WSDL_CACHE_NONE';
+            return $config->get('wsdlCache') == 'WSDL_CACHE_NONE';
         });
         $this->assertConfig('--cacheDisk', true, function (ConfigInterface $config) {
-                return $config->get('wsdlCache') == 'WSDL_CACHE_DISK';
+            return $config->get('wsdlCache') == 'WSDL_CACHE_DISK';
         });
         $this->assertConfig('--cacheMemory', true, function (ConfigInterface $config) {
-                return $config->get('wsdlCache') == 'WSDL_CACHE_MEMORY';
+            return $config->get('wsdlCache') == 'WSDL_CACHE_MEMORY';
         });
         $this->assertConfig('--cacheBoth', true, function (ConfigInterface $config) {
-                return $config->get('wsdlCache') == 'WSDL_CACHE_BOTH';
+            return $config->get('wsdlCache') == 'WSDL_CACHE_BOTH';
         });
     }
 
@@ -91,10 +91,11 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
     protected function getConfigFromInput(array $input = array())
     {
         $generator = MockGenerator::instance();
-        $command = new GenerateCommand();
+        $command   = new GenerateCommand();
         $command->setGenerator($generator);
         $tester = new CommandTester($command);
         $tester->execute($input);
+
         return $generator->getConfig();
     }
 
@@ -107,18 +108,20 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
     protected function generateInput(array $input = array())
     {
         return array_merge(array(
-                '--input' => 'http://www.webservicex.net/CurrencyConvertor.asmx?WSDL',
-                '--output' => '/tmp'), $input);
+            '--input'  => 'http://www.webservicex.net/CurrencyConvertor.asmx?WSDL',
+            '--output' => '/tmp',
+        ), $input);
     }
 
     /**
      * Assert that the provided input is mapped correctly to a configuration value.
      *
-     * @param string|array $inputKeys One or more input arguments or options.
-     * @param mixed $inputValue The value for the argument/option.
+     * @param string|array $inputKeys        One or more input arguments or options.
+     * @param mixed $inputValue              The value for the argument/option.
      * @param string|callable $configMapping The name of the configuration option which should match the input or
-     *  a function which when passed a configuration should return the value to compare the input to.
-     * @param string $message The message to show if the two values does not match.
+     *                                       a function which when passed a configuration should return the value to
+     *                                       compare the input to.
+     * @param string $message                The message to show if the two values does not match.
      */
     protected function assertConfig($inputKeys, $inputValue, $configMapping, $message = null)
     {
@@ -127,7 +130,7 @@ class GenerateCommandTest extends \PHPUnit_Framework_TestCase
         }
 
         foreach ($inputKeys as $inputKey) {
-            $input = $this->generateInput(array($inputKey => $inputValue));
+            $input  = $this->generateInput(array($inputKey => $inputValue));
             $config = $this->getConfigFromInput($input);
 
             if (!is_callable($configMapping)) {

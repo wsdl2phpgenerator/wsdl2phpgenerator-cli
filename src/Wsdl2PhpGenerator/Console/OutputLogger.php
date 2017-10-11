@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Wsdl2PhpGenerator\Console;
-
 
 use Psr\Log\AbstractLogger;
 use Symfony\Component\Console\Output\Output;
@@ -42,23 +40,30 @@ class OutputLogger extends AbstractLogger
         // Colorize messages according to level.
         $levelWrappers = array(
             'critical' => 'error',
-            'error' => 'error',
-            'warning' => 'comment',
-            'info' => 'info',
-            'notice' => '',
-            'debug' => '',
+            'error'    => 'error',
+            'warning'  => 'comment',
+            'info'     => 'info',
+            'notice'   => '',
+            'debug'    => '',
         );
         if (!empty($levelWrappers[$level])) {
-            $message = '<'. $levelWrappers[$level] . '>' . $message . '</' . $levelWrappers[$level] . '>';
+            $message = '<'.$levelWrappers[$level].'>'.$message.'</'.$levelWrappers[$level].'>';
         }
 
         // Map log levels to verbosity settings.
-        $levels = array('critical', 'error', 'warning', 'info', 'notice', 'debug');
-        $verbosityLevels[Output::VERBOSITY_QUIET] = -1;
-        $verbosityLevels[Output::VERBOSITY_NORMAL] = 3;
-        $verbosityLevels[Output::VERBOSITY_VERBOSE] = 4;
+        $levels                                          = array(
+            'critical',
+            'error',
+            'warning',
+            'info',
+            'notice',
+            'debug',
+        );
+        $verbosityLevels[Output::VERBOSITY_QUIET]        = -1;
+        $verbosityLevels[Output::VERBOSITY_NORMAL]       = 3;
+        $verbosityLevels[Output::VERBOSITY_VERBOSE]      = 4;
         $verbosityLevels[Output::VERBOSITY_VERY_VERBOSE] = 5;
-        $verbosityLevels[Output::VERBOSITY_DEBUG] = 5;
+        $verbosityLevels[Output::VERBOSITY_DEBUG]        = 5;
 
         // If level is greater than verbosity level then print the message.
         if (array_search($level, $levels) <= $verbosityLevels[$this->output->getVerbosity()]) {
