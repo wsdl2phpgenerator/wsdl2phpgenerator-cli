@@ -21,9 +21,9 @@
     },
     "require-dev": {
         "kasperg/phing-github": "0.2.*",
-        "kherge/box": "2.4.*",
-        "phing/phing": "2.7.*",
-        "phpunit/phpunit": "4.0.*",
+        "kherge/box": "^2.7",
+        "phing/phing": "~2.7",
+        "phpunit/phpunit": "~4.4",
         "doctrine/annotations": "1.2.*"
     }
 }
