@@ -55,3 +55,5 @@ Uses the [MIT licence](http://www.opensource.org/licenses/mit-license.php).
 - update phpunit
 - phpcs
 - fix all remove todos
+- todo make iconv polyfil optional
+  "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
