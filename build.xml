@@ -40,12 +40,12 @@
 
         <!-- Create a proper release for the tag as tags cannot have assets attached. -->
         <githubcreaterelease username="${username}" password="${password}" authMethod="password"
-                             owner="wsdl2phpgenerator" repository="wsdl2phpgenerator" tagName="${version}"
+                             owner="wsdl2phpgenerator" repository="wsdl2phpgenerator-cli" tagName="${version}"
                              releaseId="release" />
 
         <!-- Finally we can create the asset. -->
         <githubcreateassets username="${username}" password="${password}" authMethod="password"
-                            owner="wsdl2phpgenerator" repository="wsdl2phpgenerator" releaseId="${release}">
+                            owner="wsdl2phpgenerator" repository="wsdl2phpgenerator-cli" releaseId="${release}">
             <fileset dir=".">
                 <include name="wsdl2phpgenerator-*.phar"/>
             </fileset>
