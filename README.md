@@ -46,13 +46,6 @@ Uses the [MIT licence](http://www.opensource.org/licenses/mit-license.php).
 
 ## todo
 - tag dev-master as 2.5.5
-- fix phar build, box https://github.com/box-project/box2
-- add .gitattributes exclude phar
 - edit readme old version hint
 - edit readme for phar usage and composer usage
-- support symfony 2 & 3
-- update phpunit
 - phpcs
-- fix all remove todos
-- todo make iconv polyfil optional
-  "ext-iconv": "To convert non-UTF-8 strings to UTF-8 (or symfony/polyfill-iconv in case ext-iconv cannot be used).",
