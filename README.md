@@ -1,11 +1,10 @@
-# wsdl2phpgenerator-cli 
+# wsdl2phpgenerator-cli
 
-*Work in progress!* 
+*Work in progress!*
 
 [![Build Status](https://travis-ci.org/wsdl2phpgenerator/wsdl2phpgenerator-cli.svg?branch=3.x)](https://travis-ci.org/wsdl2phpgenerator/wsdl2phpgenerator-cli)
 [![Code Coverage](https://scrutinizer-ci.com/g/wsdl2phpgenerator/wsdl2phpgenerator-cli/badges/coverage.png?b=3.x)](https://scrutinizer-ci.com/g/wsdl2phpgenerator/wsdl2phpgenerator-cli/?branch=3.x)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/wsdl2phpgenerator/wsdl2phpgenerator-cli/badges/quality-score.png?b=3.x)](https://scrutinizer-ci.com/g/wsdl2phpgenerator/wsdl2phpgenerator-cli/?branch=3.x)
-[![Dependency Status](https://www.versioneye.com/user/projects/53c4ab1b617ed40453000073/badge.svg)](https://www.versioneye.com/user/projects/53c4ab1b617ed40453000073)
 
 Command line application wrapper for the [wsdl2phpgenerator](https://github.com/wsdl2phpgenerator/wsdl2phpgenerator) library. Takes a WSDL file and outputs PHP class files ready to use.
 
@@ -24,7 +23,7 @@ When installed with composer use:
 or
 
     vendor/bin/wsdl2php -i "http://www.webservicex.net/CurrencyConvertor.asmx?WSDL" -o tmp/phub -ns=My\\NameSpace\\Entity --soapClientClass=\\My\\NameSpace\\SoapClient
-    
+
 
 To use the phar version of wsdl2phpgenerator follow these steps:
 
