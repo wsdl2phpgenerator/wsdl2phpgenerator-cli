@@ -14,7 +14,7 @@ env:
   - SYMFONY_VERSION="~2.6"
   # Test against previous minor releases of Symfony 2.x to ensure that we
   # actually support the versions we specify in our requirements.
-  - SYMFONY_VERSION="<3.4"
+  - SYMFONY_VERSION="~3.4"
 
 before_install:
   # Ensure that we always run with the latest version of composer.
