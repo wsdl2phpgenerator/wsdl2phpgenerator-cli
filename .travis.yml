@@ -1,34 +1,33 @@
 language: php
-dist: precise
 sudo: false
 
 php:
-  - 5.3
   - 5.4
   - 5.5
   - 5.6
   - 7.0
   - 7.1
-  - 7.2
-env:
-  - SYMFONY_VERSION="~2.6"
-  # Test against previous minor releases of Symfony 2.x to ensure that we
-  # actually support the versions we specify in our requirements.
-  - SYMFONY_VERSION="~3.4"
 
+env:
+  - PREFER_LOWEST="--prefer-lowest"
+  - PREFER_LOWEST=""
+
+matrix:
+  include:
+    # PHP 5.3 builds have to be included manually as they require precise
+    - php: 5.3
+      dist: precise
+      env: PREFER_LOWEST="--prefer-lowest"
+    - php: 5.3
+      dist: precise
+      env: PREFER_LOWEST=""
 before_install:
   # Ensure that we always run with the latest version of composer.
   # The default one supplied by Travis can get stale resulting in failed builds.
   - composer selfupdate
 
 before_script:
-  # Use --prefer-source to download dependencies via git and avoid GitHub API
-  # rate limits resulting in 502 HTTP responses, build errors and
-  # Composer\Downloader\TransportException.
-  # https://github.com/symfony/symfony/issues/4687
-  - composer install --dev --no-interaction --prefer-source
-  # Update the Symfony version to test against.
-  - composer require symfony/console:${SYMFONY_VERSION}
+  - composer update --no-interaction $PREFER_LOWEST
 
 script:
   - mkdir -p build/logs
