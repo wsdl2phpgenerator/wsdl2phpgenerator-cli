@@ -8,7 +8,7 @@ use Wsdl2PhpGenerator\Generator;
 
 require 'vendor/autoload.php';
 
-$app = new Application('wsdl2php', '3.0-dev');
+$app = new Application('wsdl2php', '3.4.0');
 $command = new GenerateCommand();
 $command->setGenerator(new Generator());
 $app->add($command);

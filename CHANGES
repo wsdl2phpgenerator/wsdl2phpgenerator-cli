@@ -1,102 +1,14 @@
-
-2.4.0 / 2014-04-22 
+3.4.0
 ==================
 
- * Add support for base types
- * Updated PHPUnit to 4.0.x and other dependencies.
- * Fix location of type nodes if no prefix is used.
- * Fix description for CLI option to set default value of construction parameters to null.
- * Fix kherge/Amend dependency
- 
-2.3.0 / 2014-02-23
+ - updated all versions
+ - renamed -n shortcut to -ns since -n is already in use as --nointeraction in symfony console
+
+2.5.5
+==================
+- moved cli to own repo
+
+< 2.5.5
 ==================
 
- * Configuration is no longer a singleton
- * Fix XML generation due to namespace backslash
- * Fix missing namespace for PHP code generation
- * Fix handling of operations named after PHP keywords.
- * Fix element/type nameclash
- * Fix operations initialization for services
- * Use PHP VCR for mocking HTTP requests.
- * Code and documentation cleanup
-
-2.2.2 / 2014-01-08 
-==================
-
- * Convert <anyXML> to string
-
-2.2.1 / 2014-01-01 
-==================
-
- * Fix imports with relative URLs.
- * Fix generation of Enum constants which resolve to PHP primitives.
- * Fix support for non-standard WSDL namespace aliases.
- * Fix setting Symfony Console application version when releasing.
-
-2.2.0 / 2013-12-13 
-==================
-
- * Support all minor releases of Symfony Console 2.*.
-
-2.1.0 / 2013-12-09 
-==================
-
- * Create a GitHub release and upload resulting phar file when releasing.
- * Replace Coveralls with Scrutinizer for code coverage.
- * Use box to build phar file of project.
- * Add Phing build script to automate releases.
- * Refactor to use Symfony Console component instead of custom CLI code.
-
-2.0.3 / 2013-10-30 
-==================
-
- * Remove leftover usage of gettext functions.
-
-2.0.2 / 2013-10-29 
-==================
-
- * Correct way to use composer autoloader.
-
-2.0.1 / 2013-10-28
-==================
-
- * Remove conf dir as it's not used anymore.
-
-2.0.0 / 2013-10-26
-==================
-
- * Extract interfaces to define public API.
- * Improve PSR2 compatability. Remove side effects/requires from classes.
- * Remove translation support.
- * Allow project to be packaged by Composer.
- * PHP 5.5 support. Move entire library to namespaces to avoid conflict with new Generator class. Thanks to chriskl.
-
-Version 1.4.2
-==================
-
- * The generator's soap client doesn't use caching any more
-
-Version 1.4.1
-==================
-
- * Fixed issue #20 with the generation of classes not working if simple type is not enum or pattern. Thanks to rc.poison
- * Fixed issue #21 with the classmap listing the classnames in the wrong way. Thanks to rc.poison
- * Fixed issue #22 with the php classname being used as comparison instead of the real classname. Thanks to rc.poison
-
-Version 1.4
-==================
-
- * Improved the phpdoc generated
- * Added support for enumerated values issue #13
- * Added support for generating phpdoc from the documentation blocks in the wsdl issue #18
-
-Version 1.3
-==================
-
- * Adding the -v verbose flag
- * Adding the -p prefix and -q suffix flags
- * Improving code coverage with tests
- * Improving tests
- * Fixing fatal error in 5.3 version issue #14
- * Added the autoload parameter to class_exists calls issue #10
-
+ * cli was part of https://github.com/wsdl2phpgenerator/wsdl2phpgenerator

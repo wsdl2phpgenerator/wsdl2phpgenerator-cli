@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Wsdl2PhpGenerator\Console;
 
 use Symfony\Component\Console\Command\Command;
@@ -58,7 +57,6 @@ class GenerateCommand extends Command
                 null,
                 'outputDir'
             )
-
             ->addConfigOption(
                 'classes',
                 'c',
@@ -85,7 +83,7 @@ class GenerateCommand extends Command
             )
             ->addConfigOption(
                 'namespace',
-                'n',
+                'ns',
                 InputOption::VALUE_REQUIRED,
                 'Use namespace with the name',
                 null,
@@ -157,14 +155,13 @@ class GenerateCommand extends Command
         $this->generator = $generator;
     }
 
-
     /**
      * Adds an argument where the value maps to a generator configuration.
      *
-     * @param string $name The argument name
-     * @param integer $mode The argument mode: InputArgument::REQUIRED or InputArgument::OPTIONAL
-     * @param string $description A description text
-     * @param mixed $default The default value (for InputArgument::OPTIONAL mode only)
+     * @param string $name                   The argument name
+     * @param integer $mode                  The argument mode: InputArgument::REQUIRED or InputArgument::OPTIONAL
+     * @param string $description            A description text
+     * @param mixed $default                 The default value (for InputArgument::OPTIONAL mode only)
      * @param string|callable $configMapping The name of the configuration value to map the argument value to.
      * @return GenerateCommand The current instance
      */
@@ -176,19 +173,21 @@ class GenerateCommand extends Command
         $configMapping = null
     ) {
         $this->setConfigMapping($name, $configMapping);
+
         return $this->addArgument($name, $mode, $description, $default);
     }
 
     /**
      * Adds an option where the value maps to a generator configuration.
      *
-     * @param string $name The option name
-     * @param string $shortcut The shortcut (can be null)
-     * @param integer $mode The option mode: One of the InputOption::VALUE_* constants
-     * @param string $description A description text
-     * @param mixed $default The default value (must be null for InputOption::VALUE_REQUIRED or InputOption::VALUE_NONE)
+     * @param string $name                   The option name
+     * @param string $shortcut               The shortcut (can be null)
+     * @param integer $mode                  The option mode: One of the InputOption::VALUE_* constants
+     * @param string $description            A description text
+     * @param mixed $default                 The default value (must be null for InputOption::VALUE_REQUIRED or
+     *                                       InputOption::VALUE_NONE)
      * @param string|callable $configMapping The name of the configuration value to map the argument value to or an
-     *  anonymous function which performs the mapping.
+     *                                       anonymous function which performs the mapping.
      * @return GenerateCommand The current instance
      */
     protected function addConfigOption(
@@ -200,6 +199,7 @@ class GenerateCommand extends Command
         $configMapping = null
     ) {
         $this->setConfigMapping($name, $configMapping);
+
         return $this->addOption($name, $shortcut, $mode, $description, $default);
     }
 
@@ -225,9 +225,14 @@ class GenerateCommand extends Command
                 $config->set('wsdlCache', $cache);
             }
         };
+
         return $this->addConfigOption($name, $shortcut, $mode, $description, $default, $cacheMapping);
     }
 
+    /**
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         // Input and output options are in fact required so bail if they are not set.
@@ -238,7 +243,7 @@ class GenerateCommand extends Command
         // Initialize configuration with null values. They will be updated during mapping.
         $config = new Config(array(
             'inputFile' => null,
-            'outputDir' => null
+            'outputDir' => null,
         ));
 
         // Map arguments to configuration
@@ -250,6 +255,8 @@ class GenerateCommand extends Command
 
         // Go generate!
         $this->generator->generate($config);
+
+        return defined(Command::SUCCESS)?Command::SUCCESS:0;
     }
 
     /**
