@@ -255,6 +255,8 @@ class GenerateCommand extends Command
 
         // Go generate!
         $this->generator->generate($config);
+
+        return defined(Command::SUCCESS)?Command::SUCCESS:0;
     }
 
     /**
