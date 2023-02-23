@@ -11,6 +11,14 @@ Command line application wrapper for the [wsdl2phpgenerator](https://github.com/
 
 Uses the [MIT licence](http://www.opensource.org/licenses/mit-license.php).
 
+## Maintenance status
+
+This is no longer actively maintained.
+
+If you are looking for a PHP library to work with SOAP, you might want to try [`phpro/soap-client`](https://github.com/phpro/soap-client).
+
+If you are currently using `wsdl2phpgenerator` and want to continue using it, consider forking the project and maintain it yourself.
+
 ## Contributors
 Originally developed by [@walle](https://github.com/walle) and includes bugfixes and improvements from [@vakopian](https://github.com/vakopian), [@statikbe](https://github.com/statikbe/),
 [@ecolinet](https://github.com/ecolinet), [@nuth](https://github.com/nuth/), [@chriskl](https://github.com/chriskl/), [@RSully](https://github.com/RSully/), [@jrbasso](https://github.com/jrbasso/),
